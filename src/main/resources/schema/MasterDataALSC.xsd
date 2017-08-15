@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:iep="http://www.lilly.com/iep/canonical/ALSC/v1.0" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:simpleType name="empty">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="dateOrEmpty">
+		<xs:union memberTypes="xs:date empty"/>
+	</xs:simpleType>
+	<xs:element name="ALSCMasterRefData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Study" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="StudyID" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="StudyTitle" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="2000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="DevelopmentPhase" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="DrugProgramCd" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="StudyStartDate" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="dateOrEmpty"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="StudyEndDate" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="dateOrEmpty"/>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="SponsoringUnit" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="300"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="StudyTherapeuticArea" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="50"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="Indication" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="50"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="StudyDesignBlinding" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="StatisticalDesign" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="300"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="StudyCurrentStatus" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="300"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="StudyClosedFlag" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="FileType" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Cumulative"/>
+						<xs:enumeration value="Snapshot"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="FileDesc" type="xs:string" use="optional"/>
+			<xs:attribute name="ModelVersion" use="required">
+				<xs:annotation>
+					<xs:documentation>Version number for ALSC Master Data Custom Schema model. Format used
+						for this attribute is ##.## where # represents digit. e.g.
+						1.01</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="5"/>
+						<xs:pattern value="\d\d\.\d\d"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="FileCreationDateTime" type="xs:dateTime" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

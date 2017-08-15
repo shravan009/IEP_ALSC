@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+     Copyright 2005-2015 Red Hat, Inc.
+
+     Red Hat licenses this file to you under the Apache License, version
+     2.0 (the "License"); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.
+
+-->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+<proxies>
+    <proxy>
+      <id>Lilly</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>us_proxy_indy.xh1.lilly.com</host>
+      <port>9000</port>
+      <nonProxyHosts>local.net|lilly.com|40.*.*.*</nonProxyHosts>
+    </proxy>
+  </proxies>
+
+  <profiles>
+  <profile>
+      <id>fuse</id>
+      <repositories>
+        <repository>
+          <id>lilly</id>
+          <name>llynexus</name>
+          <url>https://llynexus.am.lilly.com:8443/nexus/content/groups/LillyGroup</url>
+          <layout>default</layout>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>lilly</id>
+          <name>llynexus</name>
+          <url>https://llynexus.am.lilly.com:8443/nexus/content/groups/LillyGroup</url>
+          <layout>default</layout>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>fuse</activeProfile>
+  </activeProfiles>
+
+</settings>
